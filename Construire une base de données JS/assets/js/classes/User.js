@@ -58,5 +58,21 @@ class User {
     set profileImage(profileImage) {
         this.#profileImage = profileImage;
     }
+    
+    toJSON () {
+        
+    let users = {
+        id : this.#id,
+        username : this.#username,
+        email : this.#email,
+        password : this.#password,
+        firstName : this.#firstName,
+        lastName : this.#lastName,
+        profileImage : this.#profileImage
+    };
+
+    return JSON.stringify(users);
+    
+    }
 }
 export { User };
