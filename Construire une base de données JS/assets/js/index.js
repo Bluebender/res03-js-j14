@@ -18,24 +18,19 @@ window.addEventListener("DOMContentLoaded", function(){
     console.log(books)
     
     // Sauvegarde du tableau books et du tableau users
-    sessionStorage.setItem("books", JSON.stringify(books));
+    sessionStorage.setItem("booksBackup", JSON.stringify(books));
     sessionStorage.setItem("users", JSON.stringify(users));
     
-    // Je recupère la sauvegarde en format "string"
-    let booksStringDataString = sessionStorage.getItem("books");
-    console.log(booksStringDataString)
 
-    // Je parse le tableau, mais pas les objets du tableau
-    let booksJSDataString = JSON.parse(booksStringDataString);
-    console.log(booksJSDataString)
+    // Je recupère la sauvegarde et je parse le tableau
+    let booksBackup = JSON.parse(sessionStorage.getItem("booksBackup"));
+
 
     // Je parse chaque élément du tableau
     let newBooksArray = [];
-    for (let i=0; i<booksJSDataString.length; i++){
-        let booksJSDataJS = JSON.parse(booksJSDataString[i]);
-        console.log(booksJSDataJS);
-        let book = new Book(booksJSDataJS.id, booksJSDataJS.title, booksJSDataJS.author, booksJSDataJS.publicationDate, booksJSDataJS.totalPages, booksJSDataJS.excerpt, booksJSDataJS.coverImage);
-        console.log(book);
+    for (let i=0; i<booksBackup.length; i++){
+        let bookBackup = JSON.parse(booksBackup[i]);
+        let book = new Book(bookBackup.id, bookBackup.title, bookBackup.author, bookBackup.publicationDate, bookBackup.totalPages, bookBackup.excerpt, bookBackup.coverImage);
         newBooksArray.push(book);
     }
     console.log(newBooksArray)
